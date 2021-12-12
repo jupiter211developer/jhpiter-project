@@ -1,0 +1,54 @@
+{
+  "name": "CountiesAvaiable",
+  "fields": [
+    {
+      "fieldName": "earliest",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "latest",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "recordCount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fips",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "5"
+    },
+    {
+      "fieldName": "countyName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "stateAbbr",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "county",
+      "otherEntityRelationshipName": "countiesAvaiable",
+      "relationshipName": "county",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "ccr_countys_avaiable",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211128002139"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "CountyRecordParty",
+  "fields": [
+    {
+      "fieldName": "recordKey",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "partyName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "partyRole",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "countyRecord",
+      "otherEntityRelationshipName": "countyRecordParty",
+      "relationshipName": "countyRecord"
+    }
+  ],
+  "entityTableName": "ccr_county_record_party",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211128002144"
+}

@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="state">
+      <h2 data-cy="stateDetailsHeading"><span>State</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ state.id }}</span>
+        </dd>
+        <dt><span>State Name</span></dt>
+        <dd>
+          <span>{{ state.stateName }}</span>
+        </dd>
+        <dt><span>State Abbr</span></dt>
+        <dd>
+          <span>{{ state.stateAbbr }}</span>
+        </dd>
+        <dt><span>Sub Region</span></dt>
+        <dd>
+          <span>{{ state.subRegion }}</span>
+        </dd>
+        <dt><span>St Fips</span></dt>
+        <dd>
+          <span>{{ state.stFips }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/state', state.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

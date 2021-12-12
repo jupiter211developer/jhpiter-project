@@ -1,0 +1,92 @@
+
+entity State(ccr_state){
+  stateName String maxlength(50)
+  stateAbbr String maxlength(2)
+  subRegion String maxlength(18)
+  stFips String maxlength(2)
+}
+
+entity County(ccr_county){
+    countyName String maxlength(50)
+    cntyFips String maxlength(3)
+    stateAbbr String maxlength(2)
+    stFips String maxlength(2)
+    fips String maxlength(5)
+}
+
+entity CountiesAvaiable(ccr_countys_avaiable){
+    earliest Instant
+    latest Instant
+    recordCount Integer
+    fips String maxlength(5)
+    countyName String maxlength(50)
+    stateAbbr String maxlength(2)
+}
+
+
+entity CountyRecord(ccr_county_record){
+	cat String maxlength(30)
+    docNum String maxlength(50)
+    docType String maxlength(50)
+    book String maxlength(10)
+    setAbbr String maxlength(10)
+    vol String maxlength(10)
+    pg String maxlength(10)
+    filedDate Instant
+    effDate Instant
+    recordKey String required unique
+    fips String
+    pdfPath String
+
+}
+
+entity CountyImage(ccr_county_image){
+    recordKey String required
+    fileSize Integer
+    fileName String
+    pageCnt Integer
+    fileDate Instant
+    filePath String
+    md5Hash String
+}
+
+entity CountyImagePage(ccr_county_image_page){
+    recordKey String required
+    fileSize Integer
+    pageNo Integer
+    fileName String
+    fileDate Instant
+    filePath String
+    ocrScore Double
+    md5Hash String
+}
+
+entity CountyRecordLegal(ccr_county_record_legal){
+    legal String maxlength(255)
+    recordKey String required 
+}
+
+entity CountyRecordParty(ccr_county_record_party){
+    recordKey String required
+    partyName String
+    partyRole Integer
+}
+
+relationship OneToOne{
+    CountiesAvaiable to County
+    CountyImage{countyRecord} to CountyRecord{countyImage}
+}
+
+relationship ManyToOne{
+    CountyImagePage{countyRecord} to CountyRecord{countyImagePage}
+    CountyImagePage{countyImage} to CountyImage{countyImagePage}
+    County{state} to State{county}  
+    CountyRecordParty{countyRecord} to CountyRecord{countyRecordParty}
+    CountyRecord{county} to County{countyRecord}
+    CountyRecordLegal{countyRecord} to CountyRecord{countyRecordLegal}
+
+}
+
+service * with serviceClass
+paginate * with pagination
+filter *

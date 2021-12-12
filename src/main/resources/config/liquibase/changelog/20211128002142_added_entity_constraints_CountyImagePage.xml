@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity CountyImagePage.
+    -->
+    <changeSet id="20211128002142-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="county_record_id"
+                                 baseTableName="ccr_county_image_page"
+                                 constraintName="fk_ccr_county_image_page__county_record_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ccr_county_record"/>
+
+        <addForeignKeyConstraint baseColumnNames="county_image_id"
+                                 baseTableName="ccr_county_image_page"
+                                 constraintName="fk_ccr_county_image_page__county_image_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ccr_county_image"/>
+    </changeSet>
+</databaseChangeLog>

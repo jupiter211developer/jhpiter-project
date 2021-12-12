@@ -1,0 +1,111 @@
+<div class="flex align-items-center justify-content-center">
+  <div class="card shadow-5 p-5 max-w-max">
+    <h5>Search {{ selectedCounty?.countyName }}, {{ selectedCounty?.stateAbbr }}</h5>
+    <p>Records from {{ selectedCounty?.earliest | formatDateNts }} to {{ selectedCounty?.latest | formatDateNts }}</p>
+    <div [formGroup]="publicRecordSearchForm" class="container">
+      <div
+        *ngFor="let p of partyInputs.controls; let i = index"
+        class="field p-fluid flex align-self-end align-items-center"
+        formArrayName="partyInputs"
+      >
+        <jhi-party-input [formControlName]="i"></jhi-party-input>
+
+        <button
+          (click)="addPartyInput()"
+          class="p-button-rounded p-button-success ml-3 mr-1 mt-2"
+          icon="pi pi-plus"
+          pButton
+          pRipple
+          type="button"
+        ></button>
+        <button
+          (click)="removePartyInput(i)"
+          *ngIf="partyInputs.length > 1"
+          class="p-button-rounded p-button-danger mr-1 mt-2"
+          icon="pi pi-minus"
+          pButton
+          pRipple
+          type="button"
+        ></button>
+      </div>
+
+      <div class="row">
+        <div class="field p-fluid mr-3">
+          <label>Filed Date</label>
+          <p-dropdown
+            (onChange)="dateSearchPredicateOnChange($event)"
+            [options]="dateSearchParams"
+            formControlName="datePredicate"
+            id="dateSearchParams"
+            optionLabel="name"
+          >
+          </p-dropdown>
+        </div>
+        <div class="field p-fluid mr-3 w-9rem">
+          <label for="startDate">{{ dateLabel }}</label>
+          <p-calendar
+            [showButtonBar]="True"
+            [showIcon]="True"
+            dateFormat="yy/mm/dd"
+            formControlName="fileDateMin"
+            id="startDate"
+            [maxDate]="maxDate"
+            [minDate]="minDate"
+          >
+          </p-calendar>
+        </div>
+        <div *ngIf="showSecondDate" class="field p-fluid w-9rem">
+          <label for="endDate">End Date</label>
+          <p-calendar
+            [showButtonBar]="True"
+            [showIcon]="True"
+            dateFormat="yy/mm/dd"
+            formControlName="fileDateMax"
+            id="endDate"
+            [maxDate]="maxDate"
+            [minDate]="minDate"
+          >
+          </p-calendar>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field p-fluid w-12rem mr-3">
+          <label for="docType">Doc Type</label>
+          <input formControlName="docType" id="docType" pInputText type="text" />
+        </div>
+        <div class="field p-fluid w-12rem mr-3">
+          <label for="docNumber">Doc Number</label>
+          <input formControlName="docNum" id="docNumber" pInputText type="text" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field p-fluid w-6rem mr-3">
+          <label for="book">Book</label>
+          <input formControlName="bk" id="book" pInputText type="text" />
+        </div>
+        <div class="field p-fluid w-6rem mr-3">
+          <label for="vol">Vol</label>
+          <input formControlName="vol" id="vol" pInputText type="text" />
+        </div>
+        <div class="field p-fluid w-6rem mr-3">
+          <label for="pg">PG</label>
+          <input formControlName="pg" id="pg" pInputText type="text" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field p-fluid">
+          <label for="lgls">Legals</label>
+          <input formControlName="lglInputs" id="lgls" pInputText type="text" />
+        </div>
+      </div>
+
+      <div class="row flex justify-content-between">
+        <button (click)="cancel()" class="p-button-raised p-button-rounded p-ripple" pButton type="button">Cancel</button>
+        <button (click)="submit()" class="p-button-raised p-button-rounded p-ripple" pButton type="button">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

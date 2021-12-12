@@ -1,0 +1,124 @@
+<div>
+  <h2 id="page-heading" data-cy="CountyRecordHeading">
+    <span>County Records</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-county-record"
+        [routerLink]="['/county-record/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new County Record </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="countyRecords?.length === 0">
+    <span>No countyRecords found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="countyRecords && countyRecords.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="cat"><span>Cat</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="docNum"><span>Doc Num</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="docType"><span>Doc Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="book"><span>Book</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="setAbbr"><span>Set Abbr</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="vol"><span>Vol</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="pg"><span>Pg</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="filedDate"><span>Filed Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="effDate"><span>Eff Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="recordKey"><span>Record Key</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="fips"><span>Fips</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="pdfPath"><span>Pdf Path</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="county.id"><span>County</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let countyRecord of countyRecords; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/county-record', countyRecord.id, 'view']">{{ countyRecord.id }}</a>
+          </td>
+          <td>{{ countyRecord.cat }}</td>
+          <td>{{ countyRecord.docNum }}</td>
+          <td>{{ countyRecord.docType }}</td>
+          <td>{{ countyRecord.book }}</td>
+          <td>{{ countyRecord.setAbbr }}</td>
+          <td>{{ countyRecord.vol }}</td>
+          <td>{{ countyRecord.pg }}</td>
+          <td>{{ countyRecord.filedDate | formatMediumDatetime }}</td>
+          <td>{{ countyRecord.effDate | formatMediumDatetime }}</td>
+          <td>{{ countyRecord.recordKey }}</td>
+          <td>{{ countyRecord.fips }}</td>
+          <td>{{ countyRecord.pdfPath }}</td>
+          <td>
+            <div *ngIf="countyRecord.county">
+              <a [routerLink]="['/county', countyRecord.county?.id, 'view']">{{ countyRecord.county?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/county-record', countyRecord.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/county-record', countyRecord.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(countyRecord)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="countyRecords && countyRecords.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

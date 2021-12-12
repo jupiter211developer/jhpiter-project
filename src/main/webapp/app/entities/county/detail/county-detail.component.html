@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="county">
+      <h2 data-cy="countyDetailsHeading"><span>County</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ county.id }}</span>
+        </dd>
+        <dt><span>County Name</span></dt>
+        <dd>
+          <span>{{ county.countyName }}</span>
+        </dd>
+        <dt><span>Cnty Fips</span></dt>
+        <dd>
+          <span>{{ county.cntyFips }}</span>
+        </dd>
+        <dt><span>State Abbr</span></dt>
+        <dd>
+          <span>{{ county.stateAbbr }}</span>
+        </dd>
+        <dt><span>St Fips</span></dt>
+        <dd>
+          <span>{{ county.stFips }}</span>
+        </dd>
+        <dt><span>Fips</span></dt>
+        <dd>
+          <span>{{ county.fips }}</span>
+        </dd>
+        <dt><span>State</span></dt>
+        <dd>
+          <div *ngIf="county.state">
+            <a [routerLink]="['/state', county.state?.id, 'view']">{{ county.state?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/county', county.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

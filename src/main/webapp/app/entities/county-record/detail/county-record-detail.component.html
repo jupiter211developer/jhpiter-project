@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="countyRecord">
+      <h2 data-cy="countyRecordDetailsHeading"><span>County Record</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ countyRecord.id }}</span>
+        </dd>
+        <dt><span>Cat</span></dt>
+        <dd>
+          <span>{{ countyRecord.cat }}</span>
+        </dd>
+        <dt><span>Doc Num</span></dt>
+        <dd>
+          <span>{{ countyRecord.docNum }}</span>
+        </dd>
+        <dt><span>Doc Type</span></dt>
+        <dd>
+          <span>{{ countyRecord.docType }}</span>
+        </dd>
+        <dt><span>Book</span></dt>
+        <dd>
+          <span>{{ countyRecord.book }}</span>
+        </dd>
+        <dt><span>Set Abbr</span></dt>
+        <dd>
+          <span>{{ countyRecord.setAbbr }}</span>
+        </dd>
+        <dt><span>Vol</span></dt>
+        <dd>
+          <span>{{ countyRecord.vol }}</span>
+        </dd>
+        <dt><span>Pg</span></dt>
+        <dd>
+          <span>{{ countyRecord.pg }}</span>
+        </dd>
+        <dt><span>Filed Date</span></dt>
+        <dd>
+          <span>{{ countyRecord.filedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Eff Date</span></dt>
+        <dd>
+          <span>{{ countyRecord.effDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Record Key</span></dt>
+        <dd>
+          <span>{{ countyRecord.recordKey }}</span>
+        </dd>
+        <dt><span>Fips</span></dt>
+        <dd>
+          <span>{{ countyRecord.fips }}</span>
+        </dd>
+        <dt><span>Pdf Path</span></dt>
+        <dd>
+          <span>{{ countyRecord.pdfPath }}</span>
+        </dd>
+        <dt><span>County</span></dt>
+        <dd>
+          <div *ngIf="countyRecord.county">
+            <a [routerLink]="['/county', countyRecord.county?.id, 'view']">{{ countyRecord.county?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/county-record', countyRecord.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

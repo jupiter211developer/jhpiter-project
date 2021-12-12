@@ -1,0 +1,15 @@
+<h5>Select a county to search.</h5>
+<div class="row">
+  <div class="col font-bold">County</div>
+
+  <div class="col font-bold">Date Range</div>
+  <div class="col font-bold">Total Records</div>
+</div>
+<div *ngFor="let c of countiesAvaiables" class="row cursor-pointer" (click)="onCountySelected(c)">
+  <div class="col">
+    <span>{{ c.countyName }} CO, {{ c.stateAbbr }}</span>
+  </div>
+
+  <div class="col">{{ c.earliest | formatDateNts }} to {{ c.latest | formatDateNts }}</div>
+  <div class="col">{{ c.recordCount }}</div>
+</div>

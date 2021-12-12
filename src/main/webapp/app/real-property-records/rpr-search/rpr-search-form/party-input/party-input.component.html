@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="field p-fluid mr-3">
+    <label for="partyInput">Name</label>
+    <input #partyInput (input)="partyInputChange($event.target)" [(ngModel)]="partyInputValue" id="partyInput" pInputText type="text" />
+  </div>
+  <div class="field p-fluid mr-3">
+    <label for="role">Role</label>
+    <p-dropdown
+      [options]="partyRoles"
+      id="role"
+      optionLabel="name"
+      #partyInputType
+      (onChange)="partyInputTypeChange($event)"
+      [(ngModel)]="partyInputTypeSelectedValue"
+      dataKey="name"
+      dropdownIcon="pi pi-angle-double-down"
+      optionLabel="name"
+      optionValue="name"
+      panelStyleClass="p-dropdown-panel-override"
+      styleClass="p-dropdown-override"
+    ></p-dropdown>
+  </div>
+</div>

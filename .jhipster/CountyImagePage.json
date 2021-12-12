@@ -1,0 +1,62 @@
+{
+  "name": "CountyImagePage",
+  "fields": [
+    {
+      "fieldName": "recordKey",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fileSize",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "pageNo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fileName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fileDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "filePath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ocrScore",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "md5Hash",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "countyRecord",
+      "otherEntityRelationshipName": "countyImagePage",
+      "relationshipName": "countyRecord"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "countyImage",
+      "otherEntityRelationshipName": "countyImagePage",
+      "relationshipName": "countyImage"
+    }
+  ],
+  "entityTableName": "ccr_county_image_page",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211128002142"
+}

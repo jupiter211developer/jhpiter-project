@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="countyImagePage">
+      <h2 data-cy="countyImagePageDetailsHeading"><span>County Image Page</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ countyImagePage.id }}</span>
+        </dd>
+        <dt><span>Record Key</span></dt>
+        <dd>
+          <span>{{ countyImagePage.recordKey }}</span>
+        </dd>
+        <dt><span>File Size</span></dt>
+        <dd>
+          <span>{{ countyImagePage.fileSize }}</span>
+        </dd>
+        <dt><span>Page No</span></dt>
+        <dd>
+          <span>{{ countyImagePage.pageNo }}</span>
+        </dd>
+        <dt><span>File Name</span></dt>
+        <dd>
+          <span>{{ countyImagePage.fileName }}</span>
+        </dd>
+        <dt><span>File Date</span></dt>
+        <dd>
+          <span>{{ countyImagePage.fileDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>File Path</span></dt>
+        <dd>
+          <span>{{ countyImagePage.filePath }}</span>
+        </dd>
+        <dt><span>Ocr Score</span></dt>
+        <dd>
+          <span>{{ countyImagePage.ocrScore }}</span>
+        </dd>
+        <dt><span>Md 5 Hash</span></dt>
+        <dd>
+          <span>{{ countyImagePage.md5Hash }}</span>
+        </dd>
+        <dt><span>County Record</span></dt>
+        <dd>
+          <div *ngIf="countyImagePage.countyRecord">
+            <a [routerLink]="['/county-record', countyImagePage.countyRecord?.id, 'view']">{{ countyImagePage.countyRecord?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>County Image</span></dt>
+        <dd>
+          <div *ngIf="countyImagePage.countyImage">
+            <a [routerLink]="['/county-image', countyImagePage.countyImage?.id, 'view']">{{ countyImagePage.countyImage?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/county-image-page', countyImagePage.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

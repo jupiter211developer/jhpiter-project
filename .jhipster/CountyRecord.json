@@ -1,0 +1,111 @@
+{
+  "name": "CountyRecord",
+  "fields": [
+    {
+      "fieldName": "cat",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "docNum",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "docType",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "book",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "setAbbr",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "vol",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "pg",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    },
+    {
+      "fieldName": "filedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "effDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "recordKey",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "fips",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pdfPath",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "county",
+      "otherEntityRelationshipName": "countyRecord",
+      "relationshipName": "county"
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "countyImage",
+      "otherEntityRelationshipName": "countyRecord",
+      "relationshipName": "countyImage",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "countyImagePage",
+      "otherEntityRelationshipName": "countyRecord",
+      "relationshipName": "countyImagePage"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "countyRecordParty",
+      "otherEntityRelationshipName": "countyRecord",
+      "relationshipName": "countyRecordParty"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "countyRecordLegal",
+      "otherEntityRelationshipName": "countyRecord",
+      "relationshipName": "countyRecordLegal"
+    }
+  ],
+  "entityTableName": "ccr_county_record",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211128002140"
+}

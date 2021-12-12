@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="countiesAvaiable">
+      <h2 data-cy="countiesAvaiableDetailsHeading"><span>Counties Avaiable</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ countiesAvaiable.id }}</span>
+        </dd>
+        <dt><span>Earliest</span></dt>
+        <dd>
+          <span>{{ countiesAvaiable.earliest | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Latest</span></dt>
+        <dd>
+          <span>{{ countiesAvaiable.latest | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Record Count</span></dt>
+        <dd>
+          <span>{{ countiesAvaiable.recordCount }}</span>
+        </dd>
+        <dt><span>Fips</span></dt>
+        <dd>
+          <span>{{ countiesAvaiable.fips }}</span>
+        </dd>
+        <dt><span>County Name</span></dt>
+        <dd>
+          <span>{{ countiesAvaiable.countyName }}</span>
+        </dd>
+        <dt><span>State Abbr</span></dt>
+        <dd>
+          <span>{{ countiesAvaiable.stateAbbr }}</span>
+        </dd>
+        <dt><span>County</span></dt>
+        <dd>
+          <div *ngIf="countiesAvaiable.county">
+            <a [routerLink]="['/county', countiesAvaiable.county?.id, 'view']">{{ countiesAvaiable.county?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/counties-avaiable', countiesAvaiable.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

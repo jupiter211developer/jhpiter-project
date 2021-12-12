@@ -1,0 +1,66 @@
+{
+  "name": "County",
+  "fields": [
+    {
+      "fieldName": "countyName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "cntyFips",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "3"
+    },
+    {
+      "fieldName": "stateAbbr",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2"
+    },
+    {
+      "fieldName": "stFips",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2"
+    },
+    {
+      "fieldName": "fips",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "5"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "state",
+      "otherEntityRelationshipName": "county",
+      "relationshipName": "state"
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "countiesAvaiable",
+      "otherEntityRelationshipName": "county",
+      "relationshipName": "countiesAvaiable",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "countyRecord",
+      "otherEntityRelationshipName": "county",
+      "relationshipName": "countyRecord"
+    }
+  ],
+  "entityTableName": "ccr_county",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211128002138"
+}

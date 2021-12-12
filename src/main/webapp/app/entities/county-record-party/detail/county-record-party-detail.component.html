@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="countyRecordParty">
+      <h2 data-cy="countyRecordPartyDetailsHeading"><span>County Record Party</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ countyRecordParty.id }}</span>
+        </dd>
+        <dt><span>Record Key</span></dt>
+        <dd>
+          <span>{{ countyRecordParty.recordKey }}</span>
+        </dd>
+        <dt><span>Party Name</span></dt>
+        <dd>
+          <span>{{ countyRecordParty.partyName }}</span>
+        </dd>
+        <dt><span>Party Role</span></dt>
+        <dd>
+          <span>{{ countyRecordParty.partyRole }}</span>
+        </dd>
+        <dt><span>County Record</span></dt>
+        <dd>
+          <div *ngIf="countyRecordParty.countyRecord">
+            <a [routerLink]="['/county-record', countyRecordParty.countyRecord?.id, 'view']">{{ countyRecordParty.countyRecord?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/county-record-party', countyRecordParty.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

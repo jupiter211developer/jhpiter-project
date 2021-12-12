@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="countyImage">
+      <h2 data-cy="countyImageDetailsHeading"><span>County Image</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ countyImage.id }}</span>
+        </dd>
+        <dt><span>Record Key</span></dt>
+        <dd>
+          <span>{{ countyImage.recordKey }}</span>
+        </dd>
+        <dt><span>File Size</span></dt>
+        <dd>
+          <span>{{ countyImage.fileSize }}</span>
+        </dd>
+        <dt><span>File Name</span></dt>
+        <dd>
+          <span>{{ countyImage.fileName }}</span>
+        </dd>
+        <dt><span>Page Cnt</span></dt>
+        <dd>
+          <span>{{ countyImage.pageCnt }}</span>
+        </dd>
+        <dt><span>File Date</span></dt>
+        <dd>
+          <span>{{ countyImage.fileDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>File Path</span></dt>
+        <dd>
+          <span>{{ countyImage.filePath }}</span>
+        </dd>
+        <dt><span>Md 5 Hash</span></dt>
+        <dd>
+          <span>{{ countyImage.md5Hash }}</span>
+        </dd>
+        <dt><span>County Record</span></dt>
+        <dd>
+          <div *ngIf="countyImage.countyRecord">
+            <a [routerLink]="['/county-record', countyImage.countyRecord?.id, 'view']">{{ countyImage.countyRecord?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/county-image', countyImage.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
